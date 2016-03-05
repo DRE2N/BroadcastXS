@@ -1,0 +1,16 @@
+name: BroadcastXS
+main: io.github.dre2n.broadcastxs.BroadcastXS
+version: ${project.version}
+author: Daniel Saukel
+description: ${project.description}
+website: ${project.url}
+softdepend: [BlueRoseCommons]
+commands:
+  broadcastxs:
+    description: Reference command for BroadcastXS.
+    aliases: [bxs,broadcast]
+permissions:
+  bxs.reload:
+    default: op
+  bxs.toggle:
+    default: true
