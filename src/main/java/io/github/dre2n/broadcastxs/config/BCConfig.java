@@ -28,8 +28,8 @@ public class BCConfig extends BRConfig {
 
     public static final int CONFIG_VERSION = 1;
 
-    public double interval = 120;
-    public List<String> messages = new ArrayList<>();
+    private double interval = 120;
+    private List<String> messages = new ArrayList<>();
 
     public BCConfig(File file) {
         super(file, CONFIG_VERSION);

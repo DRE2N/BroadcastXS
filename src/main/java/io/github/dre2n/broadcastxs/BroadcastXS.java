@@ -52,6 +52,11 @@ public class BroadcastXS extends BRPlugin {
         startAsyncBroadcastTask();
     }
 
+    @Override
+    public void onDisable() {
+        instance = null;
+    }
+
     /**
      * @return
      * the plugin instance
