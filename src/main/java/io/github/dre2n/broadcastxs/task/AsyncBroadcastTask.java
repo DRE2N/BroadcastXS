@@ -31,14 +31,15 @@ public class AsyncBroadcastTask extends BukkitRunnable {
     public AsyncBroadcastTask(List<String> messages) {
         this.messages = messages;
         this.index = -1;
-
-        if (messages.isEmpty()) {
-            cancel();
-        }
     }
 
     @Override
     public void run() {
+        if (messages == null || messages.isEmpty()) {
+            cancel();
+            return;
+        }
+
         index++;
 
         if (index >= messages.size()) {

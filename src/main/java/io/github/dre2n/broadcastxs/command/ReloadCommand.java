@@ -17,9 +17,10 @@
 package io.github.dre2n.broadcastxs.command;
 
 import io.github.dre2n.broadcastxs.BroadcastXS;
-import io.github.dre2n.broadcastxs.config.BCLang;
+import io.github.dre2n.broadcastxs.config.BCMessages;
 import io.github.dre2n.commons.command.BRCommand;
 import io.github.dre2n.commons.util.messageutil.MessageUtil;
+import java.io.File;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -41,12 +42,13 @@ public class ReloadCommand extends BRCommand {
     @Override
     public void onExecute(String[] args, CommandSender sender) {
         plugin.loadBCConfig();
+        plugin.loadMessageConfig(new File(plugin.getDataFolder(), "lang.yml"));
         plugin.loadBCCommands();
         plugin.getBroadcastTask().cancel();
         plugin.startAsyncBroadcastTask();
 
         MessageUtil.sendPluginTag(sender, plugin);
-        MessageUtil.sendMessage(sender, BCLang.CMD_RELOAD);
+        MessageUtil.sendMessage(sender, BCMessages.CMD_RELOAD.getMessage());
     }
 
 }

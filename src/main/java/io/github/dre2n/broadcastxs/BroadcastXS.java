@@ -18,9 +18,11 @@ package io.github.dre2n.broadcastxs;
 
 import io.github.dre2n.broadcastxs.command.*;
 import io.github.dre2n.broadcastxs.config.BCConfig;
+import io.github.dre2n.broadcastxs.config.BCMessages;
 import io.github.dre2n.broadcastxs.task.AsyncBroadcastTask;
 import io.github.dre2n.commons.command.BRCommands;
 import io.github.dre2n.commons.compatibility.Internals;
+import io.github.dre2n.commons.config.MessageConfig;
 import io.github.dre2n.commons.javaplugin.BRPlugin;
 import io.github.dre2n.commons.javaplugin.BRPluginSettings;
 import java.io.File;
@@ -34,10 +36,11 @@ public class BroadcastXS extends BRPlugin {
     private static BroadcastXS instance;
 
     private BCConfig config;
+    private MessageConfig messageConfig;
     private BukkitTask broadcastTask;
 
     public BroadcastXS() {
-        settings = new BRPluginSettings(false, false, false, false, Internals.INDEPENDENT);
+        settings = new BRPluginSettings(false, false, false, false, true, Internals.INDEPENDENT);
     }
 
     @Override
@@ -47,6 +50,7 @@ public class BroadcastXS extends BRPlugin {
         instance = this;
 
         loadBCConfig();
+        loadMessageConfig(new File(getDataFolder(), "lang.yml"));
         loadBCCommands();
 
         startAsyncBroadcastTask();
@@ -78,6 +82,21 @@ public class BroadcastXS extends BRPlugin {
      */
     public void loadBCConfig() {
         config = new BCConfig(new File(getDataFolder(), "config.yml"));
+    }
+
+    /**
+     * @return
+     * the loaded instance of MessageConfig
+     */
+    public MessageConfig getMessageConfig() {
+        return messageConfig;
+    }
+
+    /**
+     * load / reload a new instance of MessageConfig
+     */
+    public void loadMessageConfig(File file) {
+        messageConfig = new MessageConfig(BCMessages.class, file);
     }
 
     /**
