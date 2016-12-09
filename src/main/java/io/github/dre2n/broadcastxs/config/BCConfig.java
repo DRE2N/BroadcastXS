@@ -26,10 +26,14 @@ import java.util.List;
  */
 public class BCConfig extends BRConfig {
 
-    public static final int CONFIG_VERSION = 1;
+    public static final int CONFIG_VERSION = 2;
 
     private double interval = 120;
     private List<String> messages = new ArrayList<>();
+    private String prefix = "";
+    private double fadeIn = 1;
+    private double show = 3;
+    private double fadeOut = 1;
 
     public BCConfig(File file) {
         super(file, CONFIG_VERSION);
@@ -56,6 +60,38 @@ public class BCConfig extends BRConfig {
         return messages;
     }
 
+    /**
+     * @return
+     * a prefix that will be broadcasted before a message
+     */
+    public String getPrefix() {
+        return prefix;
+    }
+
+    /**
+     * @return
+     * the fade in time of a title
+     */
+    public int getFadeIn() {
+        return (int) (fadeIn * 20);
+    }
+
+    /**
+     * @return
+     * the show time of a title
+     */
+    public int getShow() {
+        return (int) (show * 20);
+    }
+
+    /**
+     * @return
+     * the fade out time of a title
+     */
+    public int getFadeOut() {
+        return (int) (fadeOut * 20);
+    }
+
     @Override
     public void initialize() {
         if (!config.contains("interval")) {
@@ -64,6 +100,22 @@ public class BCConfig extends BRConfig {
 
         if (!config.contains("messages")) {
             config.set("messages", messages);
+        }
+
+        if (!config.contains("prefix")) {
+            config.set("prefix", prefix);
+        }
+
+        if (!config.contains("fadeIn")) {
+            config.set("fadeIn", fadeIn);
+        }
+
+        if (!config.contains("show")) {
+            config.set("show", show);
+        }
+
+        if (!config.contains("fadeOut")) {
+            config.set("fadeOut", fadeOut);
         }
 
         save();
@@ -77,6 +129,10 @@ public class BCConfig extends BRConfig {
 
         if (config.contains("messages")) {
             messages = config.getStringList("messages");
+        }
+
+        if (config.contains("prefix")) {
+            prefix = config.getString("prefix");
         }
     }
 

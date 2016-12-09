@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.dre2n</groupId>
     <artifactId>broadcastxs</artifactId>
-    <version>1.1</version>
+    <version>2.0</version>
     <name>BroadcastXS</name>
     <url>https://dre2n.github.io</url>
     <description>Async broadcast plugin.</description>
@@ -41,6 +41,12 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <relocations>
+                                <relocation>
+                                    <pattern>io.github.dre2n.commons</pattern>
+                                    <shadedPattern>io.github.dre2n.broadcastxs.util.commons</shadedPattern>
+                                </relocation>
+                            </relocations>
                             <artifactSet>
                                 <includes>
                                     <include>io.github.dre2n:commons</include>
@@ -56,12 +62,12 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.9.2-R0.1-SNAPSHOT</version>
+            <version>1.11-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>io.github.dre2n</groupId>
             <artifactId>commons</artifactId>
-            <version>0.5.1</version>
+            <version>1.0.3</version>
         </dependency>
     </dependencies>
     <repositories>

@@ -16,6 +16,8 @@
  */
 package io.github.dre2n.broadcastxs.task;
 
+import io.github.dre2n.broadcastxs.BroadcastXS;
+import io.github.dre2n.broadcastxs.config.BCConfig;
 import io.github.dre2n.commons.util.messageutil.MessageUtil;
 import java.util.List;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -25,12 +27,15 @@ import org.bukkit.scheduler.BukkitRunnable;
  */
 public class AsyncBroadcastTask extends BukkitRunnable {
 
+    BCConfig config;
+
     private List<String> messages;
     private int index;
 
     public AsyncBroadcastTask(List<String> messages) {
         this.messages = messages;
         this.index = -1;
+        config = BroadcastXS.getInstance().getBCConfig();
     }
 
     @Override
@@ -46,7 +51,30 @@ public class AsyncBroadcastTask extends BukkitRunnable {
             index = 0;
         }
 
-        MessageUtil.broadcastMessage(messages.get(index));
+        String message = messages.get(index);
+        if (message.startsWith("actionBar:")) {
+            message = message.replaceFirst("actionBar:", "");
+            MessageUtil.broadcastActionBarMessage(message);
+        } else if (message.startsWith("centered:")) {
+            message = message.replaceFirst("centered:", "");
+            String[] lines = message.split("<br>");
+            for (String line : lines) {
+                MessageUtil.broadcastCenteredMessage(line);
+            }
+        } else if (message.startsWith("title:")) {
+            String[] args = message.split("subtitle:");
+            String title = args[0].replaceFirst("title:", "");
+            String subtitle = "";
+            if (args.length == 2) {
+                subtitle = args[1];
+            }
+            MessageUtil.broadcastTitleMessage(title, subtitle, config.getFadeIn(), config.getShow(), config.getFadeOut());
+        } else {
+            String[] lines = message.split("<br>");
+            for (String line : lines) {
+                MessageUtil.broadcastMessage(line);
+            }
+        }
     }
 
 }

@@ -40,7 +40,7 @@ public class BroadcastXS extends BRPlugin {
     private BukkitTask broadcastTask;
 
     public BroadcastXS() {
-        settings = new BRPluginSettings(false, false, false, false, true, Internals.INDEPENDENT);
+        settings = new BRPluginSettings(false, false, false, false, true, 19765, Internals.INDEPENDENT);
     }
 
     @Override
