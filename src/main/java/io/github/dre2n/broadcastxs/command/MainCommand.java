@@ -47,9 +47,9 @@ public class MainCommand extends BRCommand {
         MessageUtil.sendCenteredMessage(sender, "&4" + B[2] + "&f" + X[2] + S[2]);
         MessageUtil.sendCenteredMessage(sender, "&4" + B[3] + "&f" + X[3] + S[3]);
         MessageUtil.sendCenteredMessage(sender, "&4" + B[4] + "&f" + X[4] + S[4]);
-        MessageUtil.sendCenteredMessage(sender, "&b&l####### " + BCMessages.CMD_MAIN_WELCOME.getMessage() + "&7 v" + plugin.getDescription().getVersion() + " &b&l#######");
-        MessageUtil.sendCenteredMessage(sender, BCMessages.CMD_MAIN_RELOAD.getMessage());
-        MessageUtil.sendCenteredMessage(sender, "");
+        MessageUtil.sendCenteredMessage(sender, "&b&l####### " + BCMessages.CMD_MAIN.getMessage() + "&7 v" + plugin.getDescription().getVersion() + " &b&l#######");
+        MessageUtil.sendCenteredMessage(sender, BCMessages.HELP_BROADCAST.getMessage());
+        MessageUtil.sendCenteredMessage(sender, BCMessages.CMD_RELOAD.getMessage());
         MessageUtil.sendCenteredMessage(sender, "&7\u00a92016 Daniel Saukel; licensed under GPLv3.");
     }
 

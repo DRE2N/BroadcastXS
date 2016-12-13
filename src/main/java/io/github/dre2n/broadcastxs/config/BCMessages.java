@@ -26,9 +26,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
  */
 public enum BCMessages implements Messages {
 
-    CMD_RELOAD("Cmd_Reload", "&6Reload complete."),
-    CMD_MAIN_WELCOME("Cmd_MainWelcome", "&7Welcome to &4Broadcast&fXS"),
-    CMD_MAIN_RELOAD("Cmd_MainReload", "&eUse &b/bxs reload&e to reload the configuration.");
+    CMD_MAIN("cmd.main", "&7Welcome to &4Broadcast&fXS"),
+    CMD_RELOAD("cmd.reload", "&6Reload complete."),
+    HELP_BROADCAST("help.broadcast", "&eUse &b/bxs bc [index|text]&e to send a message from config or a custom one."),
+    HELP_RELOAD("help.reload", "&eUse &b/bxs reload&e to reload the configuration."),
+    ERROR_NO_SUCH_MESSAGE("error.noSuch.message", "&4The message &6&v1 &4does not exist.");
 
     private String identifier;
     private String message;

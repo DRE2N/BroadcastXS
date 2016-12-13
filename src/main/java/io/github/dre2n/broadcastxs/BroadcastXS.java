@@ -106,6 +106,7 @@ public class BroadcastXS extends BRPlugin {
         setCommands(new BRCommands(
                 "broadcastxs",
                 this,
+                new BroadcastCommand(),
                 new MainCommand(),
                 new ReloadCommand()
         ));
