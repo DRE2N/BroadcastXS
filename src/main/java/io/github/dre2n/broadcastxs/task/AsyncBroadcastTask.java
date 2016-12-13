@@ -53,26 +53,47 @@ public class AsyncBroadcastTask extends BukkitRunnable {
 
         String message = messages.get(index);
         if (message.startsWith("actionBar:")) {
-            message = message.replaceFirst("actionBar:", "");
+            message = message.replaceFirst("actionBar:", new String());
             MessageUtil.broadcastActionBarMessage(message);
-        } else if (message.startsWith("centered:")) {
-            message = message.replaceFirst("centered:", "");
-            String[] lines = message.split("<br>");
-            for (String line : lines) {
-                MessageUtil.broadcastCenteredMessage(line);
-            }
         } else if (message.startsWith("title:")) {
             String[] args = message.split("subtitle:");
-            String title = args[0].replaceFirst("title:", "");
+            String title = args[0].replaceFirst("title:", new String());
             String subtitle = "";
             if (args.length == 2) {
                 subtitle = args[1];
             }
             MessageUtil.broadcastTitleMessage(title, subtitle, config.getFadeIn(), config.getShow(), config.getFadeOut());
         } else {
+            if (!config.getHeader().isEmpty()) {
+                broadcastMessage(config.getHeader(), false);
+            }
+            broadcastMessage(message, true);
+            if (!config.getFooter().isEmpty()) {
+                broadcastMessage(config.getFooter(), false);
+            }
+        }
+    }
+
+    void broadcastMessage(String message, boolean prefix) {
+        if (message.startsWith("centered:")) {
+            message = message.replaceFirst("centered:", new String());
             String[] lines = message.split("<br>");
             for (String line : lines) {
-                MessageUtil.broadcastMessage(line);
+                if (lines[0] == line && prefix) {
+                    MessageUtil.broadcastCenteredMessage(config.getPrefix() + line);
+                } else {
+                    MessageUtil.broadcastCenteredMessage(line);
+                }
+            }
+
+        } else {
+            String[] lines = message.split("<br>");
+            for (String line : lines) {
+                if (lines[0] == line && prefix) {
+                    MessageUtil.broadcastMessage(config.getPrefix() + line);
+                } else {
+                    MessageUtil.broadcastMessage(line);
+                }
             }
         }
     }

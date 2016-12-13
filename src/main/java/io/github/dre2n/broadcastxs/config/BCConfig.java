@@ -26,11 +26,13 @@ import java.util.List;
  */
 public class BCConfig extends BRConfig {
 
-    public static final int CONFIG_VERSION = 2;
+    public static final int CONFIG_VERSION = 3;
 
     private double interval = 120;
     private List<String> messages = new ArrayList<>();
-    private String prefix = "";
+    private String prefix = new String();
+    private String header = new String();
+    private String footer = new String();
     private double fadeIn = 1;
     private double show = 3;
     private double fadeOut = 1;
@@ -66,6 +68,22 @@ public class BCConfig extends BRConfig {
      */
     public String getPrefix() {
         return prefix;
+    }
+
+    /**
+     * @return
+     * a header that will be broadcasted before a message
+     */
+    public String getHeader() {
+        return header;
+    }
+
+    /**
+     * @return
+     * a footer that will be broadcasted after a message
+     */
+    public String getFooter() {
+        return footer;
     }
 
     /**
@@ -106,6 +124,14 @@ public class BCConfig extends BRConfig {
             config.set("prefix", prefix);
         }
 
+        if (!config.contains("header")) {
+            config.set("header", header);
+        }
+
+        if (!config.contains("footer")) {
+            config.set("footer", footer);
+        }
+
         if (!config.contains("fadeIn")) {
             config.set("fadeIn", fadeIn);
         }
@@ -134,6 +160,27 @@ public class BCConfig extends BRConfig {
         if (config.contains("prefix")) {
             prefix = config.getString("prefix");
         }
+
+        if (config.contains("header")) {
+            header = config.getString("header");
+        }
+
+        if (config.contains("footer")) {
+            footer = config.getString("footer");
+        }
+
+        if (config.contains("fadeIn")) {
+            fadeIn = config.getDouble("fadeIn");
+        }
+
+        if (config.contains("show")) {
+            show = config.getDouble("show");
+        }
+
+        if (config.contains("fadeOut")) {
+            fadeOut = config.getDouble("fadeOut");
+        }
+
     }
 
 }
