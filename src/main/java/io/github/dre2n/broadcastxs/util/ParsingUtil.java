@@ -25,14 +25,13 @@ import io.github.dre2n.commons.util.messageutil.MessageUtil;
  */
 public class ParsingUtil {
 
-    static BCConfig config = BroadcastXS.getInstance().getBCConfig();
-
     /**
      * Parses and broadcasts a message.
      *
      * @param message
      */
     public static void parseAndBroadcast(String message) {
+        BCConfig config = BroadcastXS.getInstance().getBCConfig();
         if (message.startsWith("actionBar:")) {
             message = message.replaceFirst("actionBar:", new String());
             MessageUtil.broadcastActionBarMessage(message);
@@ -56,6 +55,7 @@ public class ParsingUtil {
     }
 
     static void parseAndBroadcastChat(String message, boolean prefix) {
+        BCConfig config = BroadcastXS.getInstance().getBCConfig();
         if (message.startsWith("centered:")) {
             message = message.replaceFirst("centered:", new String());
             String[] lines = message.split("<br>");

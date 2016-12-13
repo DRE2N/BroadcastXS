@@ -47,7 +47,7 @@ public class BroadcastCommand extends BRCommand {
         } else if (NumberUtil.parseInt(args[1], -1) != -1) {
             int index = NumberUtil.parseInt(args[1]);
             List<String> messages = BroadcastXS.getInstance().getBCConfig().getMessages();
-            if (messages.size() > index + 1) {
+            if (messages.size() > index) {
                 String message = messages.get(index);
                 ParsingUtil.parseAndBroadcast(message);
             } else {
@@ -58,7 +58,7 @@ public class BroadcastCommand extends BRCommand {
             String message = new String();
             for (String arg : args) {
                 if (args[0] != arg) {
-                    message += args;
+                    message += arg + " ";
                 }
             }
             ParsingUtil.parseAndBroadcast(message);

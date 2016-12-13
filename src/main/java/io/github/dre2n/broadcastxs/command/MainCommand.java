@@ -19,9 +19,7 @@ package io.github.dre2n.broadcastxs.command;
 import io.github.dre2n.broadcastxs.BroadcastXS;
 import io.github.dre2n.broadcastxs.config.BCMessages;
 import io.github.dre2n.commons.command.BRCommand;
-import static io.github.dre2n.commons.util.messageutil.FatLetters.B;
-import static io.github.dre2n.commons.util.messageutil.FatLetters.S;
-import static io.github.dre2n.commons.util.messageutil.FatLetters.X;
+import static io.github.dre2n.commons.util.messageutil.FatLetters.*;
 import io.github.dre2n.commons.util.messageutil.MessageUtil;
 import org.bukkit.command.CommandSender;
 
@@ -30,7 +28,7 @@ import org.bukkit.command.CommandSender;
  */
 public class MainCommand extends BRCommand {
 
-    protected static BroadcastXS plugin = BroadcastXS.getInstance();
+    BroadcastXS plugin = BroadcastXS.getInstance();
 
     public MainCommand() {
         setMinArgs(0);
@@ -49,7 +47,7 @@ public class MainCommand extends BRCommand {
         MessageUtil.sendCenteredMessage(sender, "&4" + B[4] + "&f" + X[4] + S[4]);
         MessageUtil.sendCenteredMessage(sender, "&b&l####### " + BCMessages.CMD_MAIN.getMessage() + "&7 v" + plugin.getDescription().getVersion() + " &b&l#######");
         MessageUtil.sendCenteredMessage(sender, BCMessages.HELP_BROADCAST.getMessage());
-        MessageUtil.sendCenteredMessage(sender, BCMessages.CMD_RELOAD.getMessage());
+        MessageUtil.sendCenteredMessage(sender, BCMessages.HELP_RELOAD.getMessage());
         MessageUtil.sendCenteredMessage(sender, "&7\u00a92016 Daniel Saukel; licensed under GPLv3.");
     }
 
