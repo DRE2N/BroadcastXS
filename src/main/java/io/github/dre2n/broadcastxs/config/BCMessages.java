@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Daniel Saukel
+ * Copyright (C) 2016-2017 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,8 +28,11 @@ public enum BCMessages implements Messages {
 
     CMD_MAIN("cmd.main", "&7Welcome to &4Broadcast&fXS"),
     CMD_RELOAD("cmd.reload", "&6Reload complete."),
+    CMD_TOGGLE_DISABLED("cmd.toggle.disabled", "&6You disabled broadcast messages."),
+    CMD_TOGGLE_ENABLED("cmd.toggle.enabled", "&6You enabled broadcast messages."),
     HELP_BROADCAST("help.broadcast", "&eUse &b/bxs bc [index|text]&e to send a message from config or a custom one."),
     HELP_RELOAD("help.reload", "&eUse &b/bxs reload&e to reload the configuration."),
+    HELP_TOGGLE("help.toggle", "&eUse &b/bxs toggle&e to enable/disable broadcasts."),
     ERROR_NO_SUCH_MESSAGE("error.noSuch.message", "&4The message &6&v1 &4does not exist.");
 
     private String identifier;

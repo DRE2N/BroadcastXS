@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Daniel Saukel
+ * Copyright (C) 2016-2017 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@ package io.github.dre2n.broadcastxs.util;
 import io.github.dre2n.broadcastxs.BroadcastXS;
 import io.github.dre2n.broadcastxs.config.BCConfig;
 import io.github.dre2n.commons.util.messageutil.MessageUtil;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 /**
  * @author Daniel Saukel
@@ -34,7 +36,7 @@ public class ParsingUtil {
         BCConfig config = BroadcastXS.getInstance().getBCConfig();
         if (message.startsWith("actionBar:")) {
             message = message.replaceFirst("actionBar:", new String());
-            MessageUtil.broadcastActionBarMessage(message);
+            broadcastActionBarMessage(message);
         } else if (message.startsWith("title:")) {
             String[] args = message.split("subtitle:");
             String title = args[0].replaceFirst("title:", new String());
@@ -42,7 +44,7 @@ public class ParsingUtil {
             if (args.length == 2) {
                 subtitle = args[1];
             }
-            MessageUtil.broadcastTitleMessage(title, subtitle, config.getFadeIn(), config.getShow(), config.getFadeOut());
+            broadcastTitleMessage(title, subtitle, config.getFadeIn(), config.getShow(), config.getFadeOut());
         } else {
             if (!config.getHeader().isEmpty()) {
                 parseAndBroadcastChat(config.getHeader(), false);
@@ -61,9 +63,9 @@ public class ParsingUtil {
             String[] lines = message.split("<br>");
             for (String line : lines) {
                 if (lines[0] == line && prefix) {
-                    MessageUtil.broadcastCenteredMessage(config.getPrefix() + line);
+                    broadcastCenteredMessage(config.getPrefix() + line);
                 } else {
-                    MessageUtil.broadcastCenteredMessage(line);
+                    broadcastCenteredMessage(line);
                 }
             }
 
@@ -71,10 +73,42 @@ public class ParsingUtil {
             String[] lines = message.split("<br>");
             for (String line : lines) {
                 if (lines[0] == line && prefix) {
-                    MessageUtil.broadcastMessage(config.getPrefix() + line);
+                    broadcastMessage(config.getPrefix() + line);
                 } else {
-                    MessageUtil.broadcastMessage(line);
+                    broadcastMessage(line);
                 }
+            }
+        }
+    }
+
+    public static void broadcastMessage(String message) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (!BroadcastXS.getInstance().getBCConfig().getExcludedPlayers().contains(player.getUniqueId())) {
+                MessageUtil.sendMessage(player, message);
+            }
+        }
+    }
+
+    public static void broadcastCenteredMessage(String message) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (!BroadcastXS.getInstance().getBCConfig().getExcludedPlayers().contains(player.getUniqueId())) {
+                MessageUtil.sendCenteredMessage(player, message);
+            }
+        }
+    }
+
+    public static void broadcastActionBarMessage(String message) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (!BroadcastXS.getInstance().getBCConfig().getExcludedPlayers().contains(player.getUniqueId())) {
+                MessageUtil.sendActionBarMessage(player, message);
+            }
+        }
+    }
+
+    public static void broadcastTitleMessage(String title, String subtitle, int fadeIn, int show, int fadeOut) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            if (!BroadcastXS.getInstance().getBCConfig().getExcludedPlayers().contains(player.getUniqueId())) {
+                MessageUtil.sendTitleMessage(player, title, subtitle, fadeIn, show, fadeOut);
             }
         }
     }

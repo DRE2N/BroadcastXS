@@ -17,39 +17,40 @@
 package io.github.dre2n.broadcastxs.command;
 
 import io.github.dre2n.broadcastxs.BroadcastXS;
+import io.github.dre2n.broadcastxs.config.BCConfig;
 import io.github.dre2n.broadcastxs.config.BCMessages;
 import io.github.dre2n.commons.command.BRCommand;
 import io.github.dre2n.commons.util.messageutil.MessageUtil;
-import java.io.File;
+import java.util.UUID;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
  * @author Daniel Saukel
  */
-public class ReloadCommand extends BRCommand {
+public class ToggleCommand extends BRCommand {
 
-    BroadcastXS plugin = BroadcastXS.getInstance();
+    BCConfig config = BroadcastXS.getInstance().getBCConfig();
 
-    public ReloadCommand() {
+    public ToggleCommand() {
         setMinArgs(0);
         setMaxArgs(0);
-        setCommand("reload");
-        setPermission("bxs.reload");
+        setCommand("toggle");
+        setPermission("bxs.toggle");
         setPlayerCommand(true);
-        setConsoleCommand(true);
+        setConsoleCommand(false);
     }
 
     @Override
     public void onExecute(String[] args, CommandSender sender) {
-        plugin.getBCConfig().save();
-        plugin.loadBCConfig();
-        plugin.loadMessageConfig(new File(plugin.getDataFolder(), "lang.yml"));
-        plugin.loadBCCommands();
-        plugin.getBroadcastTask().cancel();
-        plugin.startAsyncBroadcastTask();
-
-        MessageUtil.sendPluginTag(sender, plugin);
-        MessageUtil.sendMessage(sender, BCMessages.CMD_RELOAD.getMessage());
+        UUID uuid = ((Player) sender).getUniqueId();
+        boolean disabled = config.getExcludedPlayers().contains(uuid);
+        if (disabled) {
+            config.getExcludedPlayers().remove(uuid);
+        } else {
+            config.getExcludedPlayers().add(uuid);
+        }
+        MessageUtil.sendMessage(sender, disabled ? BCMessages.CMD_TOGGLE_ENABLED.getMessage() : BCMessages.CMD_TOGGLE_DISABLED.getMessage());
     }
 
 }

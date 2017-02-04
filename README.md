@@ -11,7 +11,7 @@ It provides basic configurability, but primarily, BXS aims to be as simple as po
 ## config.yml
 ```
 # Do not modify this.
-configVersion: 3
+configVersion: 4
 # The broadcast interval in seconds.
 interval: 5.0
 messages:
@@ -30,6 +30,10 @@ footer: "centered:&6==== &bFOOTERs&6====<br>also support formatting tags!"
 fadeIn: 1.0
 show: 3.0
 fadeOut: 1.0
+# If excluded players should be saved
+saveToggle: false
+# A list of the UUIDs of all excluded players
+excludedPlayers: []
 ```
 
 ## Commands and permissions
@@ -38,6 +42,9 @@ Reloads the configuration file and restarts the broadcast task.
 
 ### /bxs bc [index number|text] | bxs.broadcast
 Broadcasts the text or a message from config.
+
+### /bxs toggle | bxs.toggle
+Toggled broadcast messages.
 
 # Compatibilty
 ### Server

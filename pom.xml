@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.dre2n</groupId>
     <artifactId>broadcastxs</artifactId>
-    <version>3.0.1</version>
+    <version>3.1</version>
     <name>BroadcastXS</name>
     <url>https://dre2n.github.io</url>
     <description>Async broadcast plugin.</description>
@@ -67,7 +67,7 @@
         <dependency>
             <groupId>io.github.dre2n</groupId>
             <artifactId>commons</artifactId>
-            <version>1.0.5</version>
+            <version>1.0.6</version>
         </dependency>
     </dependencies>
     <repositories>

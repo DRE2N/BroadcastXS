@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Daniel Saukel
+ * Copyright (C) 2016-2017 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,13 +20,15 @@ import io.github.dre2n.commons.config.BRConfig;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
  * @author Daniel Saukel
  */
 public class BCConfig extends BRConfig {
 
-    public static final int CONFIG_VERSION = 3;
+    public static final int CONFIG_VERSION = 4;
 
     private double interval = 120;
     private List<String> messages = new ArrayList<>();
@@ -36,6 +38,8 @@ public class BCConfig extends BRConfig {
     private double fadeIn = 1;
     private double show = 3;
     private double fadeOut = 1;
+    private boolean saveToggle = false;
+    private List<UUID> excludedPlayers = new ArrayList<>();
 
     public BCConfig(File file) {
         super(file, CONFIG_VERSION);
@@ -110,6 +114,22 @@ public class BCConfig extends BRConfig {
         return (int) (fadeOut * 20);
     }
 
+    /**
+     * @return
+     * if toggling broadcasts on / off should be saved
+     */
+    public boolean getSaveToggle() {
+        return saveToggle;
+    }
+
+    /**
+     * @return
+     * the UUIDs of the players that won't receive broadcast messages
+     */
+    public List<UUID> getExcludedPlayers() {
+        return excludedPlayers;
+    }
+
     @Override
     public void initialize() {
         if (!config.contains("interval")) {
@@ -142,6 +162,14 @@ public class BCConfig extends BRConfig {
 
         if (!config.contains("fadeOut")) {
             config.set("fadeOut", fadeOut);
+        }
+
+        if (!config.contains("saveToggle")) {
+            config.set("saveToggle", saveToggle);
+        }
+
+        if (!config.contains("excludedPlayers")) {
+            config.set("excludedPlayers", excludedPlayers);
         }
 
         save();
@@ -181,6 +209,28 @@ public class BCConfig extends BRConfig {
             fadeOut = config.getDouble("fadeOut");
         }
 
+        if (config.contains("saveToggle")) {
+            saveToggle = config.getBoolean("saveToggle");
+        }
+
+        if (config.contains("excludedPlayers")) {
+            for (String string : config.getStringList("excludedPlayers")) {
+                excludedPlayers.add(UUID.fromString(string));
+            }
+        }
+    }
+
+    @Override
+    public void save() {
+        config = YamlConfiguration.loadConfiguration(file);
+        if (saveToggle) {
+            ArrayList<String> uuids = new ArrayList<>();
+            for (UUID player : excludedPlayers) {
+                uuids.add(player.toString());
+            }
+            config.set("excludedPlayers", uuids);
+        }
+        super.save();
     }
 
 }

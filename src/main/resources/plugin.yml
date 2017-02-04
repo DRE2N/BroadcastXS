@@ -8,7 +8,7 @@ softdepend: [BlueRoseCommons]
 commands:
   broadcastxs:
     description: Reference command for BroadcastXS.
-    aliases: [bxs,broadcast]
+    aliases: [bxs]
 permissions:
   bxs.reload:
     default: op

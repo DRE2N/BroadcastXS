@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Daniel Saukel
+ * Copyright (C) 2016-2017 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,6 +59,7 @@ public class BroadcastXS extends BRPlugin {
     @Override
     public void onDisable() {
         instance = null;
+        config.save();
     }
 
     /**
@@ -108,7 +109,8 @@ public class BroadcastXS extends BRPlugin {
                 this,
                 new BroadcastCommand(),
                 new MainCommand(),
-                new ReloadCommand()
+                new ReloadCommand(),
+                new ToggleCommand()
         ));
 
         getCommands().register(this);
