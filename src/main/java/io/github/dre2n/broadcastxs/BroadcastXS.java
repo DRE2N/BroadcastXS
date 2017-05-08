@@ -18,9 +18,9 @@ package io.github.dre2n.broadcastxs;
 
 import io.github.dre2n.broadcastxs.command.*;
 import io.github.dre2n.broadcastxs.config.BCConfig;
-import io.github.dre2n.broadcastxs.config.BCMessages;
+import io.github.dre2n.broadcastxs.config.BCMessage;
 import io.github.dre2n.broadcastxs.task.AsyncBroadcastTask;
-import io.github.dre2n.commons.command.BRCommands;
+import io.github.dre2n.commons.command.BRCommandCache;
 import io.github.dre2n.commons.compatibility.Internals;
 import io.github.dre2n.commons.config.MessageConfig;
 import io.github.dre2n.commons.javaplugin.BRPlugin;
@@ -97,14 +97,14 @@ public class BroadcastXS extends BRPlugin {
      * load / reload a new instance of MessageConfig
      */
     public void loadMessageConfig(File file) {
-        messageConfig = new MessageConfig(BCMessages.class, file);
+        messageConfig = new MessageConfig(BCMessage.class, file);
     }
 
     /**
      * Load the commands
      */
     public void loadBCCommands() {
-        setCommands(new BRCommands(
+        setCommandCache(new BRCommandCache(
                 "broadcastxs",
                 this,
                 new BroadcastCommand(),
@@ -113,7 +113,7 @@ public class BroadcastXS extends BRPlugin {
                 new ToggleCommand()
         ));
 
-        getCommands().register(this);
+        getCommandCache().register(this);
     }
 
     /**

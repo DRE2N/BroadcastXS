@@ -17,7 +17,7 @@
 package io.github.dre2n.broadcastxs.command;
 
 import io.github.dre2n.broadcastxs.BroadcastXS;
-import io.github.dre2n.broadcastxs.config.BCMessages;
+import io.github.dre2n.broadcastxs.config.BCMessage;
 import io.github.dre2n.broadcastxs.util.ParsingUtil;
 import io.github.dre2n.commons.command.BRCommand;
 import io.github.dre2n.commons.util.NumberUtil;
@@ -42,7 +42,7 @@ public class BroadcastCommand extends BRCommand {
     @Override
     public void onExecute(String[] args, CommandSender sender) {
         if (args.length == 1) {
-            MessageUtil.sendMessage(sender, BCMessages.HELP_BROADCAST.getMessage());
+            MessageUtil.sendMessage(sender, BCMessage.HELP_BROADCAST.getMessage());
 
         } else if (NumberUtil.parseInt(args[1], -1) != -1) {
             int index = NumberUtil.parseInt(args[1]);
@@ -51,7 +51,7 @@ public class BroadcastCommand extends BRCommand {
                 String message = messages.get(index);
                 ParsingUtil.parseAndBroadcast(message);
             } else {
-                MessageUtil.sendMessage(sender, BCMessages.ERROR_NO_SUCH_MESSAGE.getMessage(args[1]));
+                MessageUtil.sendMessage(sender, BCMessage.ERROR_NO_SUCH_MESSAGE.getMessage(args[1]));
             }
 
         } else {

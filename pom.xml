@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.dre2n</groupId>
     <artifactId>broadcastxs</artifactId>
-    <version>3.1</version>
+    <version>3.1.1</version>
     <name>BroadcastXS</name>
     <url>https://dre2n.github.io</url>
     <description>Async broadcast plugin.</description>
@@ -60,14 +60,14 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
             <version>1.11.2-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>io.github.dre2n</groupId>
             <artifactId>commons</artifactId>
-            <version>1.0.6</version>
+            <version>2.0</version>
         </dependency>
     </dependencies>
     <repositories>

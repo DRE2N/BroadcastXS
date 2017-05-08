@@ -17,14 +17,14 @@
 package io.github.dre2n.broadcastxs.config;
 
 import io.github.dre2n.broadcastxs.BroadcastXS;
-import io.github.dre2n.commons.config.Messages;
+import io.github.dre2n.commons.config.Message;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
  * @author Daniel Saukel
  */
-public enum BCMessages implements Messages {
+public enum BCMessage implements Message {
 
     CMD_MAIN("cmd.main", "&7Welcome to &4Broadcast&fXS"),
     CMD_RELOAD("cmd.reload", "&6Reload complete."),
@@ -38,7 +38,7 @@ public enum BCMessages implements Messages {
     private String identifier;
     private String message;
 
-    BCMessages(String identifier, String message) {
+    BCMessage(String identifier, String message) {
         this.identifier = identifier;
         this.message = message;
     }
@@ -68,8 +68,8 @@ public enum BCMessages implements Messages {
      * @param identifer
      * the identifer to set
      */
-    public static Messages getByIdentifier(String identifier) {
-        for (Messages message : values()) {
+    public static Message getByIdentifier(String identifier) {
+        for (Message message : values()) {
             if (message.getIdentifier().equals(identifier)) {
                 return message;
             }
@@ -83,7 +83,7 @@ public enum BCMessages implements Messages {
      */
     public static FileConfiguration toConfig() {
         FileConfiguration config = new YamlConfiguration();
-        for (Messages message : values()) {
+        for (Message message : values()) {
             config.set(message.getIdentifier(), message.getMessage());
         }
 

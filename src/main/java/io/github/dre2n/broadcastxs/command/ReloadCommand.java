@@ -17,7 +17,7 @@
 package io.github.dre2n.broadcastxs.command;
 
 import io.github.dre2n.broadcastxs.BroadcastXS;
-import io.github.dre2n.broadcastxs.config.BCMessages;
+import io.github.dre2n.broadcastxs.config.BCMessage;
 import io.github.dre2n.commons.command.BRCommand;
 import io.github.dre2n.commons.util.messageutil.MessageUtil;
 import java.io.File;
@@ -49,7 +49,7 @@ public class ReloadCommand extends BRCommand {
         plugin.startAsyncBroadcastTask();
 
         MessageUtil.sendPluginTag(sender, plugin);
-        MessageUtil.sendMessage(sender, BCMessages.CMD_RELOAD.getMessage());
+        MessageUtil.sendMessage(sender, BCMessage.CMD_RELOAD.getMessage());
     }
 
 }

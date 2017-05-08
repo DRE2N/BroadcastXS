@@ -18,7 +18,7 @@ package io.github.dre2n.broadcastxs.command;
 
 import io.github.dre2n.broadcastxs.BroadcastXS;
 import io.github.dre2n.broadcastxs.config.BCConfig;
-import io.github.dre2n.broadcastxs.config.BCMessages;
+import io.github.dre2n.broadcastxs.config.BCMessage;
 import io.github.dre2n.commons.command.BRCommand;
 import io.github.dre2n.commons.util.messageutil.MessageUtil;
 import java.util.UUID;
@@ -50,7 +50,7 @@ public class ToggleCommand extends BRCommand {
         } else {
             config.getExcludedPlayers().add(uuid);
         }
-        MessageUtil.sendMessage(sender, disabled ? BCMessages.CMD_TOGGLE_ENABLED.getMessage() : BCMessages.CMD_TOGGLE_DISABLED.getMessage());
+        MessageUtil.sendMessage(sender, disabled ? BCMessage.CMD_TOGGLE_ENABLED.getMessage() : BCMessage.CMD_TOGGLE_DISABLED.getMessage());
     }
 
 }
