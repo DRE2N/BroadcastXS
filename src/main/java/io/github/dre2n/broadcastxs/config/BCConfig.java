@@ -21,7 +21,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
  * @author Daniel Saukel
@@ -48,6 +47,7 @@ public class BCConfig extends BRConfig {
             initialize();
         }
         load();
+        loadExcludedPlayers();
     }
 
     /**
@@ -212,7 +212,9 @@ public class BCConfig extends BRConfig {
         if (config.contains("saveToggle")) {
             saveToggle = config.getBoolean("saveToggle");
         }
+    }
 
+    public void loadExcludedPlayers() {
         if (config.contains("excludedPlayers")) {
             for (String string : config.getStringList("excludedPlayers")) {
                 excludedPlayers.add(UUID.fromString(string));
@@ -220,8 +222,7 @@ public class BCConfig extends BRConfig {
         }
     }
 
-    @Override
-    public void save() {
+    public void saveExcludedPlayers() {
         if (saveToggle) {
             ArrayList<String> uuids = new ArrayList<>();
             for (UUID player : excludedPlayers) {
@@ -229,7 +230,6 @@ public class BCConfig extends BRConfig {
             }
             config.set("excludedPlayers", uuids);
         }
-        super.save();
     }
 
 }

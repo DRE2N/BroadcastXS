@@ -41,7 +41,7 @@ public class ReloadCommand extends BRCommand {
 
     @Override
     public void onExecute(String[] args, CommandSender sender) {
-        plugin.getBCConfig().save();
+        plugin.getBCConfig().saveExcludedPlayers();
         plugin.loadBCConfig();
         plugin.loadMessageConfig(new File(plugin.getDataFolder(), "lang.yml"));
         plugin.loadBCCommands();
