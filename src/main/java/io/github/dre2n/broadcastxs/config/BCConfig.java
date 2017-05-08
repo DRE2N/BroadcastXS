@@ -222,7 +222,6 @@ public class BCConfig extends BRConfig {
 
     @Override
     public void save() {
-        config = YamlConfiguration.loadConfiguration(file);
         if (saveToggle) {
             ArrayList<String> uuids = new ArrayList<>();
             for (UUID player : excludedPlayers) {
