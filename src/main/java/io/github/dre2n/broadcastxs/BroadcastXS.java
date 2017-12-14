@@ -35,6 +35,7 @@ public class BroadcastXS extends DREPlugin {
 
     private static BroadcastXS instance;
 
+    private boolean placeholderAPI;
     private BCConfig config;
     private MessageConfig messageConfig;
     private BukkitTask broadcastTask;
@@ -48,6 +49,7 @@ public class BroadcastXS extends DREPlugin {
         super.onEnable();
 
         instance = this;
+        placeholderAPI = manager.isPluginEnabled("PlaceholderAPI");
 
         loadBCConfig();
         loadMessageConfig(new File(getDataFolder(), "lang.yml"));
@@ -68,6 +70,14 @@ public class BroadcastXS extends DREPlugin {
      */
     public static BroadcastXS getInstance() {
         return instance;
+    }
+
+    /**
+     * @return
+     * true if PlaceholderAPI is enabled
+     */
+    public boolean isPlaceholderAPIEnabled() {
+        return placeholderAPI;
     }
 
     /**

@@ -19,6 +19,7 @@ package io.github.dre2n.broadcastxs.util;
 import io.github.dre2n.broadcastxs.BroadcastXS;
 import io.github.dre2n.broadcastxs.config.BCConfig;
 import io.github.dre2n.commons.chat.MessageUtil;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -83,32 +84,37 @@ public class ParsingUtil {
 
     public static void broadcastMessage(String message) {
         for (Player player : Bukkit.getOnlinePlayers()) {
+            String send = BroadcastXS.getInstance().isPlaceholderAPIEnabled() ? PlaceholderAPI.setPlaceholders(player, message) : message;
             if (!BroadcastXS.getInstance().getBCConfig().getExcludedPlayers().contains(player.getUniqueId())) {
-                MessageUtil.sendMessage(player, message);
+                MessageUtil.sendMessage(player, send);
             }
         }
     }
 
     public static void broadcastCenteredMessage(String message) {
         for (Player player : Bukkit.getOnlinePlayers()) {
+            String send = BroadcastXS.getInstance().isPlaceholderAPIEnabled() ? PlaceholderAPI.setPlaceholders(player, message) : message;
             if (!BroadcastXS.getInstance().getBCConfig().getExcludedPlayers().contains(player.getUniqueId())) {
-                MessageUtil.sendCenteredMessage(player, message);
+                MessageUtil.sendCenteredMessage(player, send);
             }
         }
     }
 
     public static void broadcastActionBarMessage(String message) {
         for (Player player : Bukkit.getOnlinePlayers()) {
+            String send = BroadcastXS.getInstance().isPlaceholderAPIEnabled() ? PlaceholderAPI.setPlaceholders(player, message) : message;
             if (!BroadcastXS.getInstance().getBCConfig().getExcludedPlayers().contains(player.getUniqueId())) {
-                MessageUtil.sendActionBarMessage(player, message);
+                MessageUtil.sendActionBarMessage(player, send);
             }
         }
     }
 
     public static void broadcastTitleMessage(String title, String subtitle, int fadeIn, int show, int fadeOut) {
         for (Player player : Bukkit.getOnlinePlayers()) {
+            String sendTitle = BroadcastXS.getInstance().isPlaceholderAPIEnabled() ? PlaceholderAPI.setPlaceholders(player, title) : title;
+            String sendSubtitle = BroadcastXS.getInstance().isPlaceholderAPIEnabled() ? PlaceholderAPI.setPlaceholders(player, subtitle) : subtitle;
             if (!BroadcastXS.getInstance().getBCConfig().getExcludedPlayers().contains(player.getUniqueId())) {
-                MessageUtil.sendTitleMessage(player, title, subtitle, fadeIn, show, fadeOut);
+                MessageUtil.sendTitleMessage(player, sendTitle, sendSubtitle, fadeIn, show, fadeOut);
             }
         }
     }

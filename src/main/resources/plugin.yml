@@ -4,12 +4,16 @@ version: ${project.version}
 author: Daniel Saukel
 description: ${project.description}
 website: ${project.url}
-softdepend: [BlueRoseCommons]
+softdepend: [PlaceholderAPI]
 commands:
   broadcastxs:
     description: Reference command for BroadcastXS.
     aliases: [bxs]
 permissions:
+  bxs.broadcast:
+    default: op
+  bxs.edit:
+    default: op
   bxs.reload:
     default: op
   bxs.toggle:
