@@ -19,8 +19,8 @@ package io.github.dre2n.broadcastxs.command;
 import io.github.dre2n.broadcastxs.BroadcastXS;
 import io.github.dre2n.broadcastxs.config.BCConfig;
 import io.github.dre2n.broadcastxs.config.BCMessage;
-import io.github.dre2n.commons.command.BRCommand;
-import io.github.dre2n.commons.util.messageutil.MessageUtil;
+import io.github.dre2n.commons.chat.MessageUtil;
+import io.github.dre2n.commons.command.DRECommand;
 import java.util.UUID;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -28,7 +28,7 @@ import org.bukkit.entity.Player;
 /**
  * @author Daniel Saukel
  */
-public class ToggleCommand extends BRCommand {
+public class ToggleCommand extends DRECommand {
 
     BCConfig config = BroadcastXS.getInstance().getBCConfig();
 

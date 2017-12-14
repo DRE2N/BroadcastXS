@@ -17,39 +17,42 @@
 package io.github.dre2n.broadcastxs.command;
 
 import io.github.dre2n.broadcastxs.BroadcastXS;
+import io.github.dre2n.broadcastxs.config.BCConfig;
 import io.github.dre2n.broadcastxs.config.BCMessage;
 import io.github.dre2n.commons.chat.MessageUtil;
 import io.github.dre2n.commons.command.DRECommand;
-import java.io.File;
+import io.github.dre2n.commons.misc.NumberUtil;
 import org.bukkit.command.CommandSender;
 
 /**
  * @author Daniel Saukel
  */
-public class ReloadCommand extends DRECommand {
+public class RemoveCommand extends DRECommand {
 
-    BroadcastXS plugin = BroadcastXS.getInstance();
+    BCConfig config = BroadcastXS.getInstance().getBCConfig();
 
-    public ReloadCommand() {
-        setMinArgs(0);
-        setMaxArgs(0);
-        setCommand("reload");
-        setPermission("bxs.reload");
+    public RemoveCommand() {
+        setMinArgs(1);
+        setMaxArgs(1);
+        setCommand("remove");
+        setPermission("bxs.edit");
         setPlayerCommand(true);
         setConsoleCommand(true);
     }
 
     @Override
     public void onExecute(String[] args, CommandSender sender) {
-        plugin.getBCConfig().saveExcludedPlayers();
-        plugin.loadBCConfig();
-        plugin.loadMessageConfig(new File(plugin.getDataFolder(), "lang.yml"));
-        plugin.loadBCCommands();
-        plugin.getBroadcastTask().cancel();
-        plugin.startAsyncBroadcastTask();
-
-        MessageUtil.sendPluginTag(sender, plugin);
-        MessageUtil.sendMessage(sender, BCMessage.CMD_RELOAD.getMessage());
+        if (args.length == 1) {
+            MessageUtil.sendMessage(sender, BCMessage.HELP_EDIT.getMessage());
+            return;
+        }
+        int index = NumberUtil.parseInt(args[1], -1);
+        if (index == -1 || config.getMessages().size() <= index) {
+            MessageUtil.sendMessage(sender, BCMessage.ERROR_NO_SUCH_MESSAGE.getMessage(args[1]));
+            return;
+        }
+        config.removeMessage(index);
+        MessageUtil.sendMessage(sender, BCMessage.CMD_REMOVE.getMessage(String.valueOf(index)));
     }
 
 }

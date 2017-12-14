@@ -16,7 +16,7 @@
  */
 package io.github.dre2n.broadcastxs.config;
 
-import io.github.dre2n.commons.config.BRConfig;
+import io.github.dre2n.commons.config.DREConfig;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.UUID;
 /**
  * @author Daniel Saukel
  */
-public class BCConfig extends BRConfig {
+public class BCConfig extends DREConfig {
 
     public static final int CONFIG_VERSION = 4;
 
@@ -230,6 +230,24 @@ public class BCConfig extends BRConfig {
             }
             config.set("excludedPlayers", uuids);
         }
+    }
+
+    public void addMessage(int index, String message) {
+        messages.add(index, message);
+        config.set("messages", messages);
+        save();
+    }
+
+    public void removeMessage(int index) {
+        messages.remove(index);
+        config.set("messages", messages);
+        save();
+    }
+
+    public void setMessage(int index, String message) {
+        messages.set(index, message);
+        config.set("messages", messages);
+        save();
     }
 
 }

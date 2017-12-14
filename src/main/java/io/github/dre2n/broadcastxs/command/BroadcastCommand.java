@@ -19,16 +19,16 @@ package io.github.dre2n.broadcastxs.command;
 import io.github.dre2n.broadcastxs.BroadcastXS;
 import io.github.dre2n.broadcastxs.config.BCMessage;
 import io.github.dre2n.broadcastxs.util.ParsingUtil;
-import io.github.dre2n.commons.command.BRCommand;
-import io.github.dre2n.commons.util.NumberUtil;
-import io.github.dre2n.commons.util.messageutil.MessageUtil;
+import io.github.dre2n.commons.chat.MessageUtil;
+import io.github.dre2n.commons.command.DRECommand;
+import io.github.dre2n.commons.misc.NumberUtil;
 import java.util.List;
 import org.bukkit.command.CommandSender;
 
 /**
  * @author Daniel Saukel
  */
-public class BroadcastCommand extends BRCommand {
+public class BroadcastCommand extends DRECommand {
 
     public BroadcastCommand() {
         setMinArgs(-1);

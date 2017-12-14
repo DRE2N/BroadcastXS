@@ -18,7 +18,7 @@ package io.github.dre2n.broadcastxs.util;
 
 import io.github.dre2n.broadcastxs.BroadcastXS;
 import io.github.dre2n.broadcastxs.config.BCConfig;
-import io.github.dre2n.commons.util.messageutil.MessageUtil;
+import io.github.dre2n.commons.chat.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 

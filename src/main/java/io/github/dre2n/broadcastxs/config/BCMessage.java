@@ -26,12 +26,17 @@ import org.bukkit.configuration.file.YamlConfiguration;
  */
 public enum BCMessage implements Message {
 
+    CMD_EDIT("cmd.edit", "&6You successfully set message &4&v1&6 to &4&v2&6."),
     CMD_MAIN("cmd.main", "&7Welcome to &4Broadcast&fXS"),
     CMD_RELOAD("cmd.reload", "&6Reload complete."),
+    CMD_REMOVE("cmd.remove", "&6You successfully removed the message &4&v1&6."),
     CMD_TOGGLE_DISABLED("cmd.toggle.disabled", "&6You disabled broadcast messages."),
     CMD_TOGGLE_ENABLED("cmd.toggle.enabled", "&6You enabled broadcast messages."),
     HELP_BROADCAST("help.broadcast", "&eUse &b/bxs bc [index|text]&e to send a message from config or a custom one."),
+    HELP_ADD("help.add", "&eUse &b/bxs add ([index]) [text]&e to add a new message."),
+    HELP_EDIT("help.edit", "&eUse &b/bxs edit [index] [text]&e to edit a message."),
     HELP_RELOAD("help.reload", "&eUse &b/bxs reload&e to reload the configuration."),
+    HELP_REMOVE("help.remove", "&eUse &b/bxs remove [index]&e to remove a message."),
     HELP_TOGGLE("help.toggle", "&eUse &b/bxs toggle&e to enable/disable broadcasts."),
     ERROR_NO_SUCH_MESSAGE("error.noSuch.message", "&4The message &6&v1 &4does not exist.");
 

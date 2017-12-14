@@ -18,15 +18,15 @@ package io.github.dre2n.broadcastxs.command;
 
 import io.github.dre2n.broadcastxs.BroadcastXS;
 import io.github.dre2n.broadcastxs.config.BCMessage;
-import io.github.dre2n.commons.command.BRCommand;
-import static io.github.dre2n.commons.util.messageutil.FatLetters.*;
-import io.github.dre2n.commons.util.messageutil.MessageUtil;
+import static io.github.dre2n.commons.chat.FatLetter.*;
+import io.github.dre2n.commons.chat.MessageUtil;
+import io.github.dre2n.commons.command.DRECommand;
 import org.bukkit.command.CommandSender;
 
 /**
  * @author Daniel Saukel
  */
-public class MainCommand extends BRCommand {
+public class MainCommand extends DRECommand {
 
     BroadcastXS plugin = BroadcastXS.getInstance();
 

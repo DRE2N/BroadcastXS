@@ -20,18 +20,18 @@ import io.github.dre2n.broadcastxs.command.*;
 import io.github.dre2n.broadcastxs.config.BCConfig;
 import io.github.dre2n.broadcastxs.config.BCMessage;
 import io.github.dre2n.broadcastxs.task.AsyncBroadcastTask;
-import io.github.dre2n.commons.command.BRCommandCache;
+import io.github.dre2n.commons.command.DRECommandCache;
 import io.github.dre2n.commons.compatibility.Internals;
 import io.github.dre2n.commons.config.MessageConfig;
-import io.github.dre2n.commons.javaplugin.BRPlugin;
-import io.github.dre2n.commons.javaplugin.BRPluginSettings;
+import io.github.dre2n.commons.javaplugin.DREPlugin;
+import io.github.dre2n.commons.javaplugin.DREPluginSettings;
 import java.io.File;
 import org.bukkit.scheduler.BukkitTask;
 
 /**
  * @author Daniel Saukel
  */
-public class BroadcastXS extends BRPlugin {
+public class BroadcastXS extends DREPlugin {
 
     private static BroadcastXS instance;
 
@@ -40,7 +40,7 @@ public class BroadcastXS extends BRPlugin {
     private BukkitTask broadcastTask;
 
     public BroadcastXS() {
-        settings = new BRPluginSettings(false, false, false, false, true, 19765, Internals.INDEPENDENT);
+        settings = new DREPluginSettings(false, false, false, false, true, 19765, Internals.INDEPENDENT);
     }
 
     @Override
@@ -104,12 +104,15 @@ public class BroadcastXS extends BRPlugin {
      * Load the commands
      */
     public void loadBCCommands() {
-        setCommandCache(new BRCommandCache(
+        setCommandCache(new DRECommandCache(
                 "broadcastxs",
                 this,
+                new AddCommand(),
                 new BroadcastCommand(),
+                new EditCommand(),
                 new MainCommand(),
                 new ReloadCommand(),
+                new RemoveCommand(),
                 new ToggleCommand()
         ));
 
