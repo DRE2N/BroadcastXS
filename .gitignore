@@ -1,3 +1,5 @@
 /nb-configuration.xml
 /target
 /dependency-reduced-pom.xml
+/.idea
+/broadcastxs.iml
