@@ -53,7 +53,7 @@ public class AddCommand extends DRECommand {
         }
         String message = new String();
         for (String arg : args) {
-            if (args[0] != arg) {
+            if (args[0] != arg && args[1] != arg) {
                 message += arg + " ";
             }
         }
