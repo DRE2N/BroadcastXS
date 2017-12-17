@@ -54,7 +54,10 @@ public class EditCommand extends DRECommand {
         String message = new String();
         for (String arg : args) {
             if (args[0] != arg && args[1] != arg) {
-                message += arg + " ";
+                if (!message.isEmpty()) {
+                    message += " ";
+                }
+                message += arg;
             }
         }
         config.setMessage(index, message);

@@ -46,7 +46,7 @@ public class AddCommand extends DRECommand {
             MessageUtil.sendMessage(sender, BCMessage.HELP_ADD.getMessage());
             return;
         }
-        int index = NumberUtil.parseInt(args[1], config.getMessages().size());
+        int index = NumberUtil.parseInt(args[1], -1);
         if (config.getMessages().size() < index) {
             MessageUtil.sendMessage(sender, BCMessage.ERROR_NO_SUCH_MESSAGE.getMessage(args[1]));
             return;
@@ -54,10 +54,13 @@ public class AddCommand extends DRECommand {
         String message = new String();
         for (String arg : args) {
             if (args[0] != arg && args[1] != arg) {
-                message += arg + " ";
+                if (!message.isEmpty()) {
+                    message += " ";
+                }
+                message += arg;
             }
         }
-        config.setMessage(index, message);
+        config.addMessage(index, message);
         MessageUtil.sendMessage(sender, BCMessage.CMD_EDIT.getMessage(String.valueOf(index), message));
     }
 

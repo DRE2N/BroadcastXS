@@ -233,7 +233,11 @@ public class BCConfig extends DREConfig {
     }
 
     public void addMessage(int index, String message) {
-        messages.add(index, message);
+        if (index == -1) {
+            messages.add(message);
+        } else {
+            messages.add(index, message);
+        }
         config.set("messages", messages);
         save();
     }
