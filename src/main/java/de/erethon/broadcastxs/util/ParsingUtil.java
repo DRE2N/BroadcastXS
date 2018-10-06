@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2017 Daniel Saukel
+ * Copyright (C) 2016-2018 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,11 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.dre2n.broadcastxs.util;
+package de.erethon.broadcastxs.util;
 
-import io.github.dre2n.broadcastxs.BroadcastXS;
-import io.github.dre2n.broadcastxs.config.BCConfig;
-import io.github.dre2n.commons.chat.MessageUtil;
+import de.erethon.broadcastxs.BroadcastXS;
+import de.erethon.broadcastxs.config.BCConfig;
+import de.erethon.commons.chat.MessageUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -36,11 +36,11 @@ public class ParsingUtil {
     public static void parseAndBroadcast(String message) {
         BCConfig config = BroadcastXS.getInstance().getBCConfig();
         if (message.startsWith("actionBar:")) {
-            message = message.replaceFirst("actionBar:", new String());
+            message = message.replaceFirst("actionBar:", "");
             broadcastActionBarMessage(message);
         } else if (message.startsWith("title:")) {
             String[] args = message.split("subtitle:");
-            String title = args[0].replaceFirst("title:", new String());
+            String title = args[0].replaceFirst("title:", "");
             String subtitle = "";
             if (args.length == 2) {
                 subtitle = args[1];
@@ -57,10 +57,10 @@ public class ParsingUtil {
         }
     }
 
-    static void parseAndBroadcastChat(String message, boolean prefix) {
+    private static void parseAndBroadcastChat(String message, boolean prefix) {
         BCConfig config = BroadcastXS.getInstance().getBCConfig();
         if (message.startsWith("centered:")) {
-            message = message.replaceFirst("centered:", new String());
+            message = message.replaceFirst("centered:", "");
             String[] lines = message.split("<br>");
             for (String line : lines) {
                 if (lines[0] == line && prefix) {

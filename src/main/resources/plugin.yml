@@ -1,5 +1,5 @@
-name: BroadcastXS
-main: io.github.dre2n.broadcastxs.BroadcastXS
+name: ${project.name}
+main: ${project.groupId}.${project.artifactId}.${project.name}
 version: ${project.version}
 author: Daniel Saukel
 description: ${project.description}

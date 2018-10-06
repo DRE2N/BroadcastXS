@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2017 Daniel Saukel
+ * Copyright (C) 2016-2018 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,27 +14,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.dre2n.broadcastxs.command;
+package de.erethon.broadcastxs.command;
 
-import io.github.dre2n.broadcastxs.BroadcastXS;
-import io.github.dre2n.broadcastxs.config.BCConfig;
-import io.github.dre2n.broadcastxs.config.BCMessage;
-import io.github.dre2n.commons.chat.MessageUtil;
-import io.github.dre2n.commons.command.DRECommand;
-import io.github.dre2n.commons.misc.NumberUtil;
+import de.erethon.broadcastxs.BroadcastXS;
+import de.erethon.broadcastxs.config.BCConfig;
+import de.erethon.broadcastxs.config.BCMessage;
+import de.erethon.commons.chat.MessageUtil;
+import de.erethon.commons.command.DRECommand;
+import de.erethon.commons.misc.NumberUtil;
 import org.bukkit.command.CommandSender;
 
 /**
  * @author Daniel Saukel
  */
-public class AddCommand extends DRECommand {
+public class RemoveCommand extends DRECommand {
 
-    BCConfig config = BroadcastXS.getInstance().getBCConfig();
+    private BCConfig config;
 
-    public AddCommand() {
-        setMinArgs(-1);
-        setMaxArgs(-1);
-        setCommand("add");
+    public RemoveCommand(BroadcastXS plugin) {
+        config = plugin.getBCConfig();
+        setMinArgs(1);
+        setMaxArgs(1);
+        setCommand("remove");
         setPermission("bxs.edit");
         setPlayerCommand(true);
         setConsoleCommand(true);
@@ -43,25 +44,16 @@ public class AddCommand extends DRECommand {
     @Override
     public void onExecute(String[] args, CommandSender sender) {
         if (args.length == 1) {
-            MessageUtil.sendMessage(sender, BCMessage.HELP_ADD.getMessage());
+            MessageUtil.sendMessage(sender, BCMessage.HELP_EDIT.getMessage());
             return;
         }
         int index = NumberUtil.parseInt(args[1], -1);
-        if (config.getMessages().size() < index) {
+        if (index == -1 || config.getMessages().size() <= index) {
             MessageUtil.sendMessage(sender, BCMessage.ERROR_NO_SUCH_MESSAGE.getMessage(args[1]));
             return;
         }
-        String message = new String();
-        for (String arg : args) {
-            if (args[0] != arg && args[1] != arg) {
-                if (!message.isEmpty()) {
-                    message += " ";
-                }
-                message += arg;
-            }
-        }
-        config.addMessage(index, message);
-        MessageUtil.sendMessage(sender, BCMessage.CMD_EDIT.getMessage(String.valueOf(index), message));
+        config.removeMessage(index);
+        MessageUtil.sendMessage(sender, BCMessage.CMD_REMOVE.getMessage(String.valueOf(index)));
     }
 
 }

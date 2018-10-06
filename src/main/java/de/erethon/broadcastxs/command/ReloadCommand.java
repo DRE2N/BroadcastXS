@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2017 Daniel Saukel
+ * Copyright (C) 2016-2018 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,12 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.dre2n.broadcastxs.command;
+package de.erethon.broadcastxs.command;
 
-import io.github.dre2n.broadcastxs.BroadcastXS;
-import io.github.dre2n.broadcastxs.config.BCMessage;
-import io.github.dre2n.commons.chat.MessageUtil;
-import io.github.dre2n.commons.command.DRECommand;
+import de.erethon.broadcastxs.BroadcastXS;
+import de.erethon.broadcastxs.config.BCMessage;
+import de.erethon.commons.chat.MessageUtil;
+import de.erethon.commons.command.DRECommand;
 import java.io.File;
 import org.bukkit.command.CommandSender;
 
@@ -28,9 +28,10 @@ import org.bukkit.command.CommandSender;
  */
 public class ReloadCommand extends DRECommand {
 
-    BroadcastXS plugin = BroadcastXS.getInstance();
+    private BroadcastXS plugin;
 
-    public ReloadCommand() {
+    public ReloadCommand(BroadcastXS plugin) {
+        this.plugin = plugin;
         setMinArgs(0);
         setMaxArgs(0);
         setCommand("reload");

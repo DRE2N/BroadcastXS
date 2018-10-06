@@ -1,11 +1,11 @@
 ![BroadcastXS](http://feuerstern.bplaced.net/ressourcen/logos/BroadcastXS.png)
 
-[![Download](http://feuerstern.bplaced.net/ressourcen/buttons/Download.png)](http://feuerstern.bplaced.net/repo/io/github/dre2n/broadcastxs)
+[![Download](http://feuerstern.bplaced.net/ressourcen/buttons/Download.png)](http://erethon.de/repo/de/erethon/broadcastxs)
 
 # What is BroadcastXS?
 BroadcastXS is a broadcast plugin.
 
-It provides basic configurability, but primarily, BXS aims to be as simple as possible to offer best performance. The broadcasts are sent asynchronously; therefore, the influence to the TPS is insignificant.
+It has many useful features such as centered messages and action bars, but primarily, BXS aims to be as simple as possible to offer best performance.
 
 # Configuration instructions
 ## config.yml
@@ -48,7 +48,7 @@ Toggled broadcast messages.
 
 # Compatibilty
 ### Server
-_BroadcastXS_ works with Bukkit 1.4.2 and higher. Some features like titles and action bar messages require recent versions.
+_BroadcastXS_ works with Bukkit 1.7.9 and higher. Some features like titles and action bar messages require recent versions.
 
 ### Java
 7 and higher

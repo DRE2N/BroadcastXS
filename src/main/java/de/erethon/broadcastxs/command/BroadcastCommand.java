@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2017 Daniel Saukel
+ * Copyright (C) 2016-2018 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,14 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.dre2n.broadcastxs.command;
+package de.erethon.broadcastxs.command;
 
-import io.github.dre2n.broadcastxs.BroadcastXS;
-import io.github.dre2n.broadcastxs.config.BCMessage;
-import io.github.dre2n.broadcastxs.util.ParsingUtil;
-import io.github.dre2n.commons.chat.MessageUtil;
-import io.github.dre2n.commons.command.DRECommand;
-import io.github.dre2n.commons.misc.NumberUtil;
+import de.erethon.broadcastxs.BroadcastXS;
+import de.erethon.broadcastxs.config.BCConfig;
+import de.erethon.broadcastxs.config.BCMessage;
+import de.erethon.broadcastxs.util.ParsingUtil;
+import de.erethon.commons.chat.MessageUtil;
+import de.erethon.commons.command.DRECommand;
+import de.erethon.commons.misc.NumberUtil;
 import java.util.List;
 import org.bukkit.command.CommandSender;
 
@@ -30,7 +31,10 @@ import org.bukkit.command.CommandSender;
  */
 public class BroadcastCommand extends DRECommand {
 
-    public BroadcastCommand() {
+    private BCConfig config;
+
+    public BroadcastCommand(BroadcastXS plugin) {
+        config = plugin.getBCConfig();
         setMinArgs(-1);
         setMaxArgs(-1);
         setCommand("bc");
@@ -46,7 +50,7 @@ public class BroadcastCommand extends DRECommand {
 
         } else if (NumberUtil.parseInt(args[1], -1) != -1) {
             int index = NumberUtil.parseInt(args[1]);
-            List<String> messages = BroadcastXS.getInstance().getBCConfig().getMessages();
+            List<String> messages = config.getMessages();
             if (messages.size() > index) {
                 String message = messages.get(index);
                 ParsingUtil.parseAndBroadcast(message);

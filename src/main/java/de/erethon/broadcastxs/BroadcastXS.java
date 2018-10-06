@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2017 Daniel Saukel
+ * Copyright (C) 2016-2018 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,17 +14,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.dre2n.broadcastxs;
+package de.erethon.broadcastxs;
 
-import io.github.dre2n.broadcastxs.command.*;
-import io.github.dre2n.broadcastxs.config.BCConfig;
-import io.github.dre2n.broadcastxs.config.BCMessage;
-import io.github.dre2n.broadcastxs.task.AsyncBroadcastTask;
-import io.github.dre2n.commons.command.DRECommandCache;
-import io.github.dre2n.commons.compatibility.Internals;
-import io.github.dre2n.commons.config.MessageConfig;
-import io.github.dre2n.commons.javaplugin.DREPlugin;
-import io.github.dre2n.commons.javaplugin.DREPluginSettings;
+import de.erethon.broadcastxs.command.AddCommand;
+import de.erethon.broadcastxs.command.BroadcastCommand;
+import de.erethon.broadcastxs.command.EditCommand;
+import de.erethon.broadcastxs.command.MainCommand;
+import de.erethon.broadcastxs.command.ReloadCommand;
+import de.erethon.broadcastxs.command.RemoveCommand;
+import de.erethon.broadcastxs.command.ToggleCommand;
+import de.erethon.broadcastxs.config.BCConfig;
+import de.erethon.broadcastxs.config.BCMessage;
+import de.erethon.broadcastxs.task.AsyncBroadcastTask;
+import de.erethon.commons.command.DRECommandCache;
+import de.erethon.commons.config.MessageConfig;
+import de.erethon.commons.javaplugin.DREPlugin;
+import de.erethon.commons.javaplugin.DREPluginSettings;
 import java.io.File;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -33,23 +38,19 @@ import org.bukkit.scheduler.BukkitTask;
  */
 public class BroadcastXS extends DREPlugin {
 
-    private static BroadcastXS instance;
-
-    private boolean placeholderAPI;
     private BCConfig config;
-    private MessageConfig messageConfig;
     private BukkitTask broadcastTask;
 
     public BroadcastXS() {
-        settings = new DREPluginSettings(false, false, false, false, true, 19765, Internals.INDEPENDENT);
+        settings = DREPluginSettings.builder()
+                .metrics(true)
+                .spigotMCResourceId(19765)
+                .build();
     }
 
     @Override
     public void onEnable() {
         super.onEnable();
-
-        instance = this;
-        placeholderAPI = manager.isPluginEnabled("PlaceholderAPI");
 
         loadBCConfig();
         loadMessageConfig(new File(getDataFolder(), "lang.yml"));
@@ -60,29 +61,18 @@ public class BroadcastXS extends DREPlugin {
 
     @Override
     public void onDisable() {
-        instance = null;
         config.save();
     }
 
     /**
-     * @return
-     * the plugin instance
+     * @return the plugin instance
      */
     public static BroadcastXS getInstance() {
-        return instance;
+        return (BroadcastXS) DREPlugin.getInstance();
     }
 
     /**
-     * @return
-     * true if PlaceholderAPI is enabled
-     */
-    public boolean isPlaceholderAPIEnabled() {
-        return placeholderAPI;
-    }
-
-    /**
-     * @return
-     * the config
+     * @return the config
      */
     public BCConfig getBCConfig() {
         return config;
@@ -96,15 +86,9 @@ public class BroadcastXS extends DREPlugin {
     }
 
     /**
-     * @return
-     * the loaded instance of MessageConfig
-     */
-    public MessageConfig getMessageConfig() {
-        return messageConfig;
-    }
-
-    /**
      * load / reload a new instance of MessageConfig
+     *
+     * @param file the file to load from
      */
     public void loadMessageConfig(File file) {
         messageConfig = new MessageConfig(BCMessage.class, file);
@@ -117,21 +101,20 @@ public class BroadcastXS extends DREPlugin {
         setCommandCache(new DRECommandCache(
                 "broadcastxs",
                 this,
-                new AddCommand(),
-                new BroadcastCommand(),
-                new EditCommand(),
-                new MainCommand(),
-                new ReloadCommand(),
-                new RemoveCommand(),
-                new ToggleCommand()
+                new AddCommand(this),
+                new BroadcastCommand(this),
+                new EditCommand(this),
+                new MainCommand(this),
+                new ReloadCommand(this),
+                new RemoveCommand(this),
+                new ToggleCommand(this)
         ));
 
         getCommandCache().register(this);
     }
 
     /**
-     * @return
-     * the AsyncBroadcastTask
+     * @return the AsyncBroadcastTask
      */
     public BukkitTask getBroadcastTask() {
         return broadcastTask;

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2017 Daniel Saukel
+ * Copyright (C) 2016-2018 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,10 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.dre2n.broadcastxs.config;
+package de.erethon.broadcastxs.config;
 
-import io.github.dre2n.broadcastxs.BroadcastXS;
-import io.github.dre2n.commons.config.Message;
+import de.erethon.commons.config.Message;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -48,19 +47,15 @@ public enum BCMessage implements Message {
         this.message = message;
     }
 
+    /* Getters and setters */
     @Override
     public String getIdentifier() {
         return identifier;
     }
 
     @Override
-    public String getMessage() {
+    public String getRaw() {
         return message;
-    }
-
-    @Override
-    public String getMessage(String... args) {
-        return BroadcastXS.getInstance().getMessageConfig().getMessage(this, args);
     }
 
     @Override
@@ -70,8 +65,8 @@ public enum BCMessage implements Message {
 
     /* Statics */
     /**
-     * @param identifer
-     * the identifer to set
+     * @param identifier the identifier to set
+     * @return the message
      */
     public static Message getByIdentifier(String identifier) {
         for (Message message : values()) {
@@ -79,7 +74,6 @@ public enum BCMessage implements Message {
                 return message;
             }
         }
-
         return null;
     }
 
@@ -88,10 +82,9 @@ public enum BCMessage implements Message {
      */
     public static FileConfiguration toConfig() {
         FileConfiguration config = new YamlConfiguration();
-        for (Message message : values()) {
-            config.set(message.getIdentifier(), message.getMessage());
+        for (BCMessage message : values()) {
+            config.set(message.getIdentifier(), message.message);
         }
-
         return config;
     }
 
