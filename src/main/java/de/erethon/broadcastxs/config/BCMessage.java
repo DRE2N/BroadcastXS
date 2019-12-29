@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2018 Daniel Saukel
+ * Copyright (C) 2016-2019 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,75 +17,35 @@
 package de.erethon.broadcastxs.config;
 
 import de.erethon.commons.config.Message;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
  * @author Daniel Saukel
  */
 public enum BCMessage implements Message {
 
-    CMD_EDIT("cmd.edit", "&6You successfully set message &4&v1&6 to &4&v2&6."),
-    CMD_MAIN("cmd.main", "&7Welcome to &4Broadcast&fXS"),
-    CMD_RELOAD("cmd.reload", "&6Reload complete."),
-    CMD_REMOVE("cmd.remove", "&6You successfully removed the message &4&v1&6."),
-    CMD_TOGGLE_DISABLED("cmd.toggle.disabled", "&6You disabled broadcast messages."),
-    CMD_TOGGLE_ENABLED("cmd.toggle.enabled", "&6You enabled broadcast messages."),
-    HELP_BROADCAST("help.broadcast", "&eUse &b/bxs bc [index|text]&e to send a message from config or a custom one."),
-    HELP_ADD("help.add", "&eUse &b/bxs add ([index]) [text]&e to add a new message."),
-    HELP_EDIT("help.edit", "&eUse &b/bxs edit [index] [text]&e to edit a message."),
-    HELP_RELOAD("help.reload", "&eUse &b/bxs reload&e to reload the configuration."),
-    HELP_REMOVE("help.remove", "&eUse &b/bxs remove [index]&e to remove a message."),
-    HELP_TOGGLE("help.toggle", "&eUse &b/bxs toggle&e to enable/disable broadcasts."),
-    ERROR_NO_SUCH_MESSAGE("error.noSuch.message", "&4The message &6&v1 &4does not exist.");
+    CMD_EDIT("cmd.edit"),
+    CMD_MAIN("cmd.main"),
+    CMD_RELOAD("cmd.reload"),
+    CMD_REMOVE("cmd.remove"),
+    CMD_TOGGLE_DISABLED("cmd.toggle.disabled"),
+    CMD_TOGGLE_ENABLED("cmd.toggle.enabled"),
+    HELP_BROADCAST("help.broadcast"),
+    HELP_ADD("help.add"),
+    HELP_EDIT("help.edit"),
+    HELP_RELOAD("help.reload"),
+    HELP_REMOVE("help.remove"),
+    HELP_TOGGLE("help.toggle"),
+    ERROR_NO_SUCH_MESSAGE("error.noSuchMessage");
 
-    private String identifier;
-    private String message;
+    private String path;
 
-    BCMessage(String identifier, String message) {
-        this.identifier = identifier;
-        this.message = message;
-    }
-
-    /* Getters and setters */
-    @Override
-    public String getIdentifier() {
-        return identifier;
+    BCMessage(String path) {
+        this.path = path;
     }
 
     @Override
-    public String getRaw() {
-        return message;
-    }
-
-    @Override
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    /* Statics */
-    /**
-     * @param identifier the identifier to set
-     * @return the message
-     */
-    public static Message getByIdentifier(String identifier) {
-        for (Message message : values()) {
-            if (message.getIdentifier().equals(identifier)) {
-                return message;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * @return a FileConfiguration containing all messages
-     */
-    public static FileConfiguration toConfig() {
-        FileConfiguration config = new YamlConfiguration();
-        for (BCMessage message : values()) {
-            config.set(message.getIdentifier(), message.message);
-        }
-        return config;
+    public String getPath() {
+        return path;
     }
 
 }

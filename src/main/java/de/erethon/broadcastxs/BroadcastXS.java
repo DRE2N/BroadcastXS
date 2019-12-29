@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2018 Daniel Saukel
+ * Copyright (C) 2016-2019 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,10 +24,8 @@ import de.erethon.broadcastxs.command.ReloadCommand;
 import de.erethon.broadcastxs.command.RemoveCommand;
 import de.erethon.broadcastxs.command.ToggleCommand;
 import de.erethon.broadcastxs.config.BCConfig;
-import de.erethon.broadcastxs.config.BCMessage;
 import de.erethon.broadcastxs.task.AsyncBroadcastTask;
 import de.erethon.commons.command.DRECommandCache;
-import de.erethon.commons.config.MessageConfig;
 import de.erethon.commons.javaplugin.DREPlugin;
 import de.erethon.commons.javaplugin.DREPluginSettings;
 import java.io.File;
@@ -53,7 +51,6 @@ public class BroadcastXS extends DREPlugin {
         super.onEnable();
 
         loadBCConfig();
-        loadMessageConfig(new File(getDataFolder(), "lang.yml"));
         loadBCCommands();
 
         startAsyncBroadcastTask();
@@ -82,16 +79,7 @@ public class BroadcastXS extends DREPlugin {
      * Load / reload a new instance of BCConfig
      */
     public void loadBCConfig() {
-        config = new BCConfig(new File(getDataFolder(), "config.yml"));
-    }
-
-    /**
-     * load / reload a new instance of MessageConfig
-     *
-     * @param file the file to load from
-     */
-    public void loadMessageConfig(File file) {
-        messageConfig = new MessageConfig(BCMessage.class, file);
+        config = new BCConfig(this, new File(getDataFolder(), "config.yml"));
     }
 
     /**

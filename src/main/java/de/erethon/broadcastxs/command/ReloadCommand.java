@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2018 Daniel Saukel
+ * Copyright (C) 2016-2019 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@ import de.erethon.broadcastxs.BroadcastXS;
 import de.erethon.broadcastxs.config.BCMessage;
 import de.erethon.commons.chat.MessageUtil;
 import de.erethon.commons.command.DRECommand;
-import java.io.File;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -42,9 +41,9 @@ public class ReloadCommand extends DRECommand {
 
     @Override
     public void onExecute(String[] args, CommandSender sender) {
+        plugin.reloadMessageHandler();
         plugin.getBCConfig().saveExcludedPlayers();
         plugin.loadBCConfig();
-        plugin.loadMessageConfig(new File(plugin.getDataFolder(), "lang.yml"));
         plugin.loadBCCommands();
         plugin.getBroadcastTask().cancel();
         plugin.startAsyncBroadcastTask();

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2018 Daniel Saukel
+ * Copyright (C) 2016-2019 Daniel Saukel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 package de.erethon.broadcastxs.config;
 
 import de.erethon.commons.config.DREConfig;
+import de.erethon.commons.javaplugin.DREPlugin;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,27 +28,39 @@ import java.util.UUID;
  */
 public class BCConfig extends DREConfig {
 
-    public static final int CONFIG_VERSION = 4;
+    private DREPlugin plugin;
+    
+    public static final int CONFIG_VERSION = 5;
 
+    private String language = "english";
     private double interval = 120;
     private List<String> messages = new ArrayList<>();
-    private String prefix = new String();
-    private String header = new String();
-    private String footer = new String();
+    private String prefix = "";
+    private String header = "";
+    private String footer = "";
     private double fadeIn = 1;
     private double show = 3;
     private double fadeOut = 1;
     private boolean saveToggle = false;
     private List<UUID> excludedPlayers = new ArrayList<>();
 
-    public BCConfig(File file) {
+    public BCConfig(DREPlugin plugin, File file) {
         super(file, CONFIG_VERSION);
+        this.plugin = plugin;
 
         if (initialize) {
             initialize();
         }
         load();
         loadExcludedPlayers();
+    }
+
+    /**
+     * @return
+     * the plugin message language
+     */
+    public String getLanguage() {
+        return language;
     }
 
     /**
@@ -132,6 +145,10 @@ public class BCConfig extends DREConfig {
 
     @Override
     public void initialize() {
+        if (!config.contains("language")) {
+            config.set("language", language);
+        }
+
         if (!config.contains("interval")) {
             config.set("interval", interval);
         }
@@ -177,41 +194,17 @@ public class BCConfig extends DREConfig {
 
     @Override
     public void load() {
-        if (config.contains("interval")) {
-            interval = config.getDouble("interval");
-        }
-
-        if (config.contains("messages")) {
-            messages = config.getStringList("messages");
-        }
-
-        if (config.contains("prefix")) {
-            prefix = config.getString("prefix");
-        }
-
-        if (config.contains("header")) {
-            header = config.getString("header");
-        }
-
-        if (config.contains("footer")) {
-            footer = config.getString("footer");
-        }
-
-        if (config.contains("fadeIn")) {
-            fadeIn = config.getDouble("fadeIn");
-        }
-
-        if (config.contains("show")) {
-            show = config.getDouble("show");
-        }
-
-        if (config.contains("fadeOut")) {
-            fadeOut = config.getDouble("fadeOut");
-        }
-
-        if (config.contains("saveToggle")) {
-            saveToggle = config.getBoolean("saveToggle");
-        }
+        language = config.getString("language", language);
+        plugin.getMessageHandler().setDefaultLanguage(language);
+        interval = config.getDouble("interval", interval);
+        messages = config.getStringList("messages");
+        prefix = config.getString("prefix", prefix);
+        header = config.getString("header", header);
+        footer = config.getString("footer", footer);
+        fadeIn = config.getDouble("fadeIn", fadeIn);
+        show = config.getDouble("show", show);
+        fadeOut = config.getDouble("fadeOut", fadeOut);
+        saveToggle = config.getBoolean("saveToggle", saveToggle);
     }
 
     public void loadExcludedPlayers() {

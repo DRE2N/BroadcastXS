@@ -1,0 +1,18 @@
+cmd:
+  main: '&7Willkommen bei &4Broadcast&fXS'
+  reload: '&6Reload abgeschlossen.'
+  toggle:
+    disabled: '&6Broadcast-Nachrichten wurden deaktiviert.'
+    enabled: '&6Broadcast-Nachrichten wurden aktiviert.'
+  edit: '&6Die Nachricht &4&v1&6 wurde erfolgreich zu &4&v2 &6geändert.'
+  remove: '&6Die Nachricht &4&v1 &6wurde erfolgreich entfernt.'
+help:
+  broadcast: '&eNutze &b/bxs bc [Index|Text]&e, um eine voreingestellte oder
+    benutzerdefinierte Nachricht zu senden.'
+  reload: '&eNutze &b/bxs reload&e, um die Einstellungen zu reloaden.'
+  toggle: '&eNutze &b/bxs toggle&e, um Broadcasts zu (de-)aktivieren.'
+  add: '&eNutze &b/bxs add ([Index]) [Text]&e, um eine neue Nachricht hinzuzufügen.'
+  edit: '&eNutze &b/bxs edit [Index] [Text]&e, um eine Nachricht zu bearbeiten.'
+  remove: '&eNutze &b/bxs remove [Index]&e, um eine Nachricht zu entfernen.'
+error:
+  noSuchMessage: '&4Die Nachricht &6&v1 &4existiert nicht.'

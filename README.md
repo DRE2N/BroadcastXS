@@ -11,7 +11,9 @@ It has many useful features such as centered messages and action bars, but prima
 ## config.yml
 ```
 # Do not modify this.
-configVersion: 4
+configVersion: 5
+# The language of plugin messages.
+language: english
 # The broadcast interval in seconds.
 interval: 5.0
 messages:

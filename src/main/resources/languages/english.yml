@@ -1,0 +1,18 @@
+cmd:
+  main: '&7Welcome to &4Broadcast&fXS'
+  reload: '&6Reload complete.'
+  toggle:
+    disabled: '&6You disabled broadcast messages.'
+    enabled: '&6You enabled broadcast messages.'
+  edit: '&6You successfully set message &4&v1&6 to &4&v2&6.'
+  remove: '&6You successfully removed the message &4&v1&6.'
+help:
+  broadcast: '&eUse &b/bxs bc [index|text]&e to send a message from config or a custom
+    one.'
+  reload: '&eUse &b/bxs reload&e to reload the configuration.'
+  toggle: '&eUse &b/bxs toggle&e to enable/disable broadcasts.'
+  add: '&eUse &b/bxs add ([index]) [text]&e to add a new message.'
+  edit: '&eUse &b/bxs edit [index] [text]&e to edit a message.'
+  remove: '&eUse &b/bxs remove [index]&e to remove a message.'
+error:
+  noSuchMessage: '&4The message &6&v1 &4does not exist.'

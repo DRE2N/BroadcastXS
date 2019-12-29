@@ -1,0 +1,18 @@
+cmd:
+  main: '&7Bienvenue sur &4Broadcast&fXS'
+  reload: '&6Rechargement terminé.'
+  toggle:
+    disabled: '&6Les messages broadcasts ont été désactivés.'
+    enabled: '&6Les messages broadcasts ont été activés.'
+  edit: '&6Le message &4&v1&6 a été défini en &4&v2 &6avec succès.'
+  remove: '&6Le message &4&v1 &6a été retiré avec succès.'
+help:
+  broadcast: '&eTapez dans &b/bxs bc [Index|texte] &epour diffuser un message préconfiguré
+    ou personnalisé.'
+  reload: '&eTapez dans &b/bxs reload &epour recharger les configurations.'
+  toggle: '&eTapez dans &b/bxs toggle &epour (dés-)activer les messages.'
+  add: '&eTapez dans  &b/bxs add ([index]) [texte] &epour ajouter un nouveau message.'
+  edit: '&eTapez dans  &b/bxs edit [index] [texte] &epour modifier un message.'
+  remove: '&eTapez dans  &b/bxs remove [index] &epour retirer un message.'
+error:
+  noSuchMessage: '&4Le message &6&v1 &4n''existe pas.'
