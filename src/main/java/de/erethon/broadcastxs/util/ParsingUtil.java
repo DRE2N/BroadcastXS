@@ -16,9 +16,9 @@
  */
 package de.erethon.broadcastxs.util;
 
+import de.erethon.bedrock.chat.MessageUtil;
 import de.erethon.broadcastxs.BroadcastXS;
 import de.erethon.broadcastxs.config.BCConfig;
-import de.erethon.commons.chat.MessageUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

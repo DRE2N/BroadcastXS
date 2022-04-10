@@ -16,11 +16,11 @@
  */
 package de.erethon.broadcastxs.command;
 
+import de.erethon.bedrock.chat.MessageUtil;
+import de.erethon.bedrock.command.ECommand;
 import de.erethon.broadcastxs.BroadcastXS;
 import de.erethon.broadcastxs.config.BCConfig;
 import de.erethon.broadcastxs.config.BCMessage;
-import de.erethon.commons.chat.MessageUtil;
-import de.erethon.commons.command.DRECommand;
 import java.util.UUID;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -28,7 +28,7 @@ import org.bukkit.entity.Player;
 /**
  * @author Daniel Saukel
  */
-public class ToggleCommand extends DRECommand {
+public class ToggleCommand extends ECommand {
 
     private BCConfig config;
 

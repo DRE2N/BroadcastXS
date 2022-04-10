@@ -16,6 +16,9 @@
  */
 package de.erethon.broadcastxs;
 
+import de.erethon.bedrock.command.ECommandCache;
+import de.erethon.bedrock.plugin.EPlugin;
+import de.erethon.bedrock.plugin.EPluginSettings;
 import de.erethon.broadcastxs.command.AddCommand;
 import de.erethon.broadcastxs.command.BroadcastCommand;
 import de.erethon.broadcastxs.command.EditCommand;
@@ -25,22 +28,19 @@ import de.erethon.broadcastxs.command.RemoveCommand;
 import de.erethon.broadcastxs.command.ToggleCommand;
 import de.erethon.broadcastxs.config.BCConfig;
 import de.erethon.broadcastxs.task.AsyncBroadcastTask;
-import de.erethon.commons.command.DRECommandCache;
-import de.erethon.commons.javaplugin.DREPlugin;
-import de.erethon.commons.javaplugin.DREPluginSettings;
 import java.io.File;
 import org.bukkit.scheduler.BukkitTask;
 
 /**
  * @author Daniel Saukel
  */
-public class BroadcastXS extends DREPlugin {
+public class BroadcastXS extends EPlugin {
 
     private BCConfig config;
     private BukkitTask broadcastTask;
 
     public BroadcastXS() {
-        settings = DREPluginSettings.builder()
+        settings = EPluginSettings.builder()
                 .metrics(true)
                 .spigotMCResourceId(19765)
                 .build();
@@ -65,7 +65,7 @@ public class BroadcastXS extends DREPlugin {
      * @return the plugin instance
      */
     public static BroadcastXS getInstance() {
-        return (BroadcastXS) DREPlugin.getInstance();
+        return (BroadcastXS) EPlugin.getInstance();
     }
 
     /**
@@ -86,9 +86,7 @@ public class BroadcastXS extends DREPlugin {
      * Load the commands
      */
     public void loadBCCommands() {
-        setCommandCache(new DRECommandCache(
-                "broadcastxs",
-                this,
+        setCommandCache(new ECommandCache("broadcastxs", this,
                 new AddCommand(this),
                 new BroadcastCommand(this),
                 new EditCommand(this),

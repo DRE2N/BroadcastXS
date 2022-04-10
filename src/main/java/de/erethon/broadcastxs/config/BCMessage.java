@@ -16,7 +16,8 @@
  */
 package de.erethon.broadcastxs.config;
 
-import de.erethon.commons.config.Message;
+
+import de.erethon.bedrock.config.Message;
 
 /**
  * @author Daniel Saukel

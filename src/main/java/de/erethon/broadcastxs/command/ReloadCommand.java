@@ -16,16 +16,16 @@
  */
 package de.erethon.broadcastxs.command;
 
+import de.erethon.bedrock.chat.MessageUtil;
+import de.erethon.bedrock.command.ECommand;
 import de.erethon.broadcastxs.BroadcastXS;
 import de.erethon.broadcastxs.config.BCMessage;
-import de.erethon.commons.chat.MessageUtil;
-import de.erethon.commons.command.DRECommand;
 import org.bukkit.command.CommandSender;
 
 /**
  * @author Daniel Saukel
  */
-public class ReloadCommand extends DRECommand {
+public class ReloadCommand extends ECommand {
 
     private BroadcastXS plugin;
 

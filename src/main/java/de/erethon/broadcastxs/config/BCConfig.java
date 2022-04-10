@@ -16,8 +16,9 @@
  */
 package de.erethon.broadcastxs.config;
 
-import de.erethon.commons.config.DREConfig;
-import de.erethon.commons.javaplugin.DREPlugin;
+import de.erethon.bedrock.config.EConfig;
+import de.erethon.bedrock.plugin.EPlugin;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +27,9 @@ import java.util.UUID;
 /**
  * @author Daniel Saukel
  */
-public class BCConfig extends DREConfig {
+public class BCConfig extends EConfig {
 
-    private DREPlugin plugin;
+    private EPlugin plugin;
     
     public static final int CONFIG_VERSION = 5;
 
@@ -44,7 +45,7 @@ public class BCConfig extends DREConfig {
     private boolean saveToggle = false;
     private List<UUID> excludedPlayers = new ArrayList<>();
 
-    public BCConfig(DREPlugin plugin, File file) {
+    public BCConfig(EPlugin plugin, File file) {
         super(file, CONFIG_VERSION);
         this.plugin = plugin;
 

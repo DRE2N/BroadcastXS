@@ -16,18 +16,19 @@
  */
 package de.erethon.broadcastxs.command;
 
+import de.erethon.bedrock.chat.MessageUtil;
+import de.erethon.bedrock.command.ECommand;
+import de.erethon.bedrock.misc.NumberUtil;
 import de.erethon.broadcastxs.BroadcastXS;
 import de.erethon.broadcastxs.config.BCConfig;
 import de.erethon.broadcastxs.config.BCMessage;
-import de.erethon.commons.chat.MessageUtil;
-import de.erethon.commons.command.DRECommand;
-import de.erethon.commons.misc.NumberUtil;
+
 import org.bukkit.command.CommandSender;
 
 /**
  * @author Daniel Saukel
  */
-public class EditCommand extends DRECommand {
+public class EditCommand extends ECommand {
 
     private BCConfig config;
 

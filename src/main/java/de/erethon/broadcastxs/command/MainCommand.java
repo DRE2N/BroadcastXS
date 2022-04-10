@@ -16,17 +16,18 @@
  */
 package de.erethon.broadcastxs.command;
 
+import de.erethon.bedrock.chat.MessageUtil;
+import de.erethon.bedrock.command.ECommand;
 import de.erethon.broadcastxs.BroadcastXS;
 import de.erethon.broadcastxs.config.BCMessage;
-import static de.erethon.commons.chat.FatLetter.*;
-import de.erethon.commons.chat.MessageUtil;
-import de.erethon.commons.command.DRECommand;
 import org.bukkit.command.CommandSender;
+
+import static de.erethon.bedrock.chat.FatLetter.*;
 
 /**
  * @author Daniel Saukel
  */
-public class MainCommand extends DRECommand {
+public class MainCommand extends ECommand {
 
     private BroadcastXS plugin;
 
