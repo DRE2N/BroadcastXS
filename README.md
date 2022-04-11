@@ -50,10 +50,10 @@ Toggled broadcast messages.
 
 # Compatibilty
 ### Server
-_BroadcastXS_ works with Bukkit 1.7.9 and higher. Some features like titles and action bar messages require recent versions.
+_BroadcastXS_ works with Paper 1.18.2 and higher. 
 
 ### Java
-7 and higher
+17 and higher
 
 ### Known incompatibilities
 None
